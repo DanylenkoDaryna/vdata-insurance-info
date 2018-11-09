@@ -1,93 +1,66 @@
 package ua.profitsoft.pract1;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 /**
- * Этот класс нужен, чтобы хранить информацию о застрахованных клиентах
+ *This class is used to contain the main info about Insured Persons that mentioned in the contract:  FIO(first,
+ * middle, last name), personal cost of Insurance for person, date of birth
  *
- * @author Дарина Даниленко
+ * @author Daryna
  */
 public class InsuredPerson {
 
-    private String flname;// - ФИО
-    private double personalCost;//- Стоимость страховки (для данного лица)
-    private MyDate bdate;//- Дата рождения
+    private String flname;
+    private double personalCost;
+    private LocalDate btdate;
 
-    /**
-     * конструктор
-     *
-     * @param name строка ФИО застрахованного лица
-     * @param d    дата рождения лица
-     * @param cost индивидуальная стоимость страховки
+
+    /** Constructs a new Insured Person with the specified parameters of this person
+     * @param name String FIO(first, middle, last name)
+     * @param btdate LocalDate of birth
+     * @param cost double personal cost of Insurance
      */
-    public InsuredPerson(String name, MyDate d, double cost) {
+    public InsuredPerson(String name, LocalDate btdate, double cost) {
         this.setFlname(name);
-        this.setBdate(new MyDate(d.getDay(), d.getMonth(), d.getYear()));
         this.setPersonalCost(cost);
+        this.setBtdate(btdate);
     }
 
-
     /**
-     * геттер
+     * Overrided method toString() that prints the main info about object InsuredPerson in readable state
      *
-     * @return строку ФИО застрах. лица
+     * @return String with all the attributes of class InsuredPerson: FIO, date of birth, personal cost of Insurance
      */
+    @Override
+    public String toString() {
+
+        DateTimeFormatter form = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return "(FIO:" + this.getFlname() + "\t Date:" + this.getBtdate().format(form) + "\t Cost:" + this.getPersonalCost() + ")";
+
+    }
+
     public String getFlname() {
         return flname;
     }
 
-    /**
-     * сеттер
-     *
-     * @param flname строка ФИО застрах. лица
-     */
     public void setFlname(String flname) {
         this.flname = flname;
     }
 
-    /**
-     * геттер
-     *
-     * @return вещественное значение индивидуальной стоимости страховки
-     */
     public double getPersonalCost() {
         return personalCost;
     }
 
-    /**
-     * сеттер
-     *
-     * @param personalCost вещественное значение индивидуальной стоимости страховки
-     */
     public void setPersonalCost(double personalCost) {
         this.personalCost = personalCost;
     }
 
-    /**
-     * переопределенный метод toString для читаемости основной инфы по Застрахованному лицу
-     *
-     * @return строку с инфой: ФИО, дата рождения, индивид стоимость страховки
-     */
-    @Override
-    public String toString() {
-        return "(FIO:" + this.getFlname() + "\t Date:" + this.getBdate().toString() + "\t Cost:" + this.getPersonalCost() + ")";
-
+    public LocalDate getBtdate() {
+        return btdate;
     }
 
-    /**
-     * геттер
-     *
-     * @return объект типа МуDate - дату рождения
-     */
-    public MyDate getBdate() {
-        return bdate;
-    }
-
-    /**
-     * сеттер
-     *
-     * @param bdate объект типа МуDate - дата рождения
-     */
-    public void setBdate(MyDate bdate) {
-        this.bdate = bdate;
+    public void setBtdate(LocalDate btdate) {
+        this.btdate = btdate;
     }
 }

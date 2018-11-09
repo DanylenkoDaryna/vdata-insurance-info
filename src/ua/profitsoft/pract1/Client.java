@@ -1,96 +1,70 @@
 package ua.profitsoft.pract1;
 
+
 /**
- * Этот класс нужен, чтобы хранить информацию о клиенте в договоре
+ *This class is used to contain the main info about Client that initiate the contract: type of person, FIO(first,
+ * middle, last name), address
  *
- * @author Дарина Даниленко
+ * @author Daryna
  */
 public class Client {
 
-    private Type person;// тип: физ. или юр. лицо
-    private String name;//- ФИО (для физ лиц)- Название организации (для юр. лиц)
-    private String adress;//- Адрес
+    private Type person;
+    private String name;
+    private String adress;
 
     /**
-     * конструктор с параметрами для Клиента
+     * Constructs a new Contract with the specified parameters about Client
      *
-     * @param pers  одно из значений перечисления, тип: физ. или юр. лицо
-     * @param names ФИО (для физ лиц)- Название организации (для юр. лиц)
-     * @param adr   Адрес
+     * @param pers  enum that specify one of types of person ENTITY or NATURAL
+     * @param names FIO(first, middle, last name)(for NATURAL person)/name of the organization(for ENTITY person)
+     * @param adr   residential address
      */
     public Client(Type pers, String names, String adr) {
         this.setPerson(pers);
         this.setName(names);
-        this.setName(adr);
+        this.setAdress(adr);
     }
 
     /**
-     * Переопределение метода toString для читаемого вывода информации по объекту типа Клиент
+     *Overrided method toString() that prints the main info about object Client
      *
-     * @return строку с информацией: тип(физ\юрид лицо)+ ФИО\название организации+ адрес
+     * @return String with all the attributes of class in readable state
      */
     @Override
     public String toString() {
         return "Person:" + this.getPerson() + "\tName:" + this.getName() + "\tAdress:" + this.getAdress();
     }
 
-    /**
-     * геттер
-     *
-     * @return одно из значений перечисления Type, физ. или юр. лицо
-     */
     private Type getPerson() {
         return person;
     }
 
-    /**
-     * сеттер
-     *
-     * @param person одно из значений перечисления Type, физ. или юр. лицо
-     */
     public void setPerson(Type person) {
         this.person = person;
     }
 
-    /**
-     * геттер
-     *
-     * @return строку ФИО (для физ лиц), Название организации (для юр. лиц)
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name строка ФИО (для физ лиц)- Название организации (для юр. лиц)
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * геттер
-     *
-     * @return строку адреса клиента
-     */
     public String getAdress() {
         return adress;
     }
 
-    /**
-     * сеттер
-     *
-     * @param adress строка адреса Клиента
-     */
     public void setAdress(String adress) {
         this.adress = adress;
     }
 }
 
 /**
- * Перечисление для определения лица Клиента: LEGAL - юридическое, NATURAL - физическое
+ * enum for determination the type of Client: LEGAL - legal, NATURAL - physical
  */
 enum Type {
-    NATURAL,//физическое лицо
-    LEGAL//юридическое лицо
+    NATURAL,
+    LEGAL
 }
