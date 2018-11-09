@@ -8,6 +8,7 @@ import java.time.LocalDate;
  * This class is used to show the initialization and filling the object Contract, with the display on the console
  * of the main attributes of contract and total insurance cost
  *
+ *
  * @author Daryna
  */
 public class Demo {
